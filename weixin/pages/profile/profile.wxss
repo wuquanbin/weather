@@ -1,0 +1,266 @@
+/* 个人页 - iOS 设置 App 风格 */
+
+/* 登录卡片 */
+.login-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72rpx 30rpx;
+}
+
+.login-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  background: rgba(0, 122, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24rpx;
+}
+
+.avatar-placeholder {
+  font-size: 64rpx;
+}
+
+.login-hint {
+  color: #8E8E93;
+  margin-bottom: 36rpx;
+  font-size: 28rpx;
+}
+
+.login-btn {
+  background: #007AFF;
+  color: #fff;
+  border-radius: 20rpx;
+  width: 100%;
+  font-weight: 600;
+  font-size: 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+/* 用户信息 */
+.user-card {
+  padding: 32rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  margin-right: 28rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.04);
+}
+
+.avatar-placeholder-lg {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  background: rgba(0, 122, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  margin-right: 28rpx;
+}
+
+.user-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  margin-bottom: 8rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.user-id {
+  font-size: 24rpx;
+  color: #8E8E93;
+}
+
+/* 分组标题 - iOS 风格 */
+.section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #8E8E93;
+  margin-bottom: 20rpx;
+  text-transform: uppercase;
+  letter-spacing: 0.5rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-arrow {
+  font-size: 24rpx;
+  color: #C7C7CC;
+}
+
+/* 收藏列表 - iOS 分组列表 */
+.fav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 0.5rpx solid rgba(60, 60, 67, 0.1);
+}
+
+.fav-item:last-child {
+  border-bottom: none;
+}
+
+.fav-info {
+  flex: 1;
+}
+
+.fav-name {
+  font-weight: 600;
+  margin-bottom: 4rpx;
+  color: #1C1C1E;
+}
+
+.fav-tag {
+  font-size: 20rpx;
+  background: rgba(0, 122, 255, 0.08);
+  color: #007AFF;
+  padding: 4rpx 14rpx;
+  border-radius: 8rpx;
+  margin-left: 12rpx;
+  font-weight: 500;
+}
+
+.fav-addr {
+  font-size: 24rpx;
+  color: #8E8E93;
+}
+
+.fav-delete {
+  color: #FF3B30;
+  font-size: 24rpx;
+  padding: 12rpx;
+  font-weight: 500;
+}
+
+/* 反馈表单 */
+.feedback-form {
+  margin-top: 16rpx;
+}
+
+.feedback-input {
+  width: 100%;
+  height: 220rpx;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  color: #1C1C1E;
+  border: 0.5rpx solid rgba(60, 60, 67, 0.08);
+}
+
+.feedback-counter {
+  text-align: right;
+  font-size: 24rpx;
+  color: #C7C7CC;
+  margin: 12rpx 0 20rpx;
+}
+
+/* 设置项 - iOS 设置页列表行 */
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22rpx 0;
+  border-bottom: 0.5rpx solid rgba(60, 60, 67, 0.1);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-label {
+  color: #1C1C1E;
+  font-size: 30rpx;
+}
+
+.setting-value {
+  color: #007AFF;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 关于 - iOS 设置页信息行 */
+.about-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 0.5rpx solid rgba(60, 60, 67, 0.1);
+}
+
+.about-item:last-child {
+  border-bottom: none;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-label {
+  color: #8E8E93;
+  font-size: 28rpx;
+}
+
+.about-value {
+  color: #1C1C1E;
+  font-size: 28rpx;
+}
+
+.about-desc {
+  color: #8E8E93;
+  font-size: 24rpx;
+  line-height: 1.7;
+  margin-top: 12rpx;
+}
+
+/* 退出按钮 - iOS 破坏性操作 */
+.btn-logout {
+  background: #fff;
+  color: #FF3B30;
+  border: none;
+  border-radius: 20rpx;
+  font-weight: 500;
+  font-size: 32rpx;
+}
+
+.btn-logout::after {
+  border: none;
+}
+
+.btn-clear {
+  background: #fff;
+  color: #8E8E93;
+  border: none;
+  border-radius: 20rpx;
+  font-weight: 500;
+  font-size: 28rpx;
+}
+
+.btn-clear::after {
+  border: none;
+}
+
+.empty-hint {
+  color: #C7C7CC;
+  text-align: center;
+  padding: 24rpx;
+  font-size: 26rpx;
+}

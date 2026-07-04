@@ -1,0 +1,158 @@
+/* 筛选栏 - iOS 段落选择器风格 */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #1C1C1E;
+  font-size: 30rpx;
+}
+
+.filter-picker {
+  color: #007AFF;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+/* 预警卡片 */
+.warning-card {
+  border-left: none;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.warning-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.severity-badge {
+  padding: 6rpx 20rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #fff;
+  margin-right: 16rpx;
+  letter-spacing: 1rpx;
+}
+
+.severity-red {
+  background: #FF3B30;
+}
+
+.severity-orange {
+  background: #FF9500;
+}
+
+.severity-yellow {
+  background: #FFCC00;
+  color: #1C1C1E;
+}
+
+.severity-blue {
+  background: #007AFF;
+}
+
+.warning-type {
+  font-size: 24rpx;
+  color: #8E8E93;
+  font-weight: 500;
+}
+
+.warning-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1C1C1E;
+  margin-bottom: 16rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.warning-content {
+  font-size: 26rpx;
+  color: #3C3C43;
+  line-height: 1.7;
+  margin-bottom: 20rpx;
+}
+
+.warning-details {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-icon {
+  margin-right: 12rpx;
+  font-size: 24rpx;
+}
+
+.detail-text {
+  font-size: 24rpx;
+  color: #636366;
+}
+
+.defense-guide {
+  background: rgba(0, 122, 255, 0.06);
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.guide-title {
+  font-weight: 700;
+  margin-bottom: 12rpx;
+  color: #007AFF;
+  font-size: 26rpx;
+}
+
+.guide-text {
+  font-size: 24rpx;
+  color: #3C3C43;
+  line-height: 1.7;
+}
+
+/* 空状态 - iOS 风格 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 30rpx;
+}
+
+.empty-icon {
+  font-size: 88rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #8E8E93;
+}
+
+.loading-box {
+  display: flex;
+  justify-content: center;
+  padding: 48rpx;
+  color: #8E8E93;
+  font-size: 26rpx;
+}

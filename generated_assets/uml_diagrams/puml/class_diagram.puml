@@ -1,0 +1,82 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class BaseEntity {
+  +createdAt
+  +updatedAt
+  +deleted
+}
+
+class User {
+  -id: Long
+  -openid: String
+  -nickname: String
+  -districtCode: String
+  -status: Integer
+}
+
+class District {
+  -id: Long
+  -code: String
+  -name: String
+  -serviceArea: String
+}
+
+class WeatherObservation {
+  -observationTime: LocalDateTime
+  -weatherType: String
+  -temperature: BigDecimal
+  -humidity: Integer
+}
+
+class WarningNotice {
+  -warningType: String
+  -severity: String
+  -status: String
+  -issuedAt: LocalDateTime
+}
+
+class TravelPlace {
+  -name: String
+  -category: String
+  -address: String
+  -indoor: Boolean
+  -recommendLevel: Integer
+}
+
+class RiskSegment {
+  -name: String
+  -riskType: String
+  -triggerWeatherTags: String
+  -priority: Integer
+}
+
+class UserFavoritePlace {
+  -label: String
+  -address: String
+  -location: String
+}
+
+class TravelPlanningService {
+  +buildTravelReport()
+  +buildDrivingRoute()
+}
+
+BaseEntity <|-- User
+BaseEntity <|-- District
+BaseEntity <|-- WeatherObservation
+BaseEntity <|-- WarningNotice
+BaseEntity <|-- TravelPlace
+BaseEntity <|-- RiskSegment
+BaseEntity <|-- UserFavoritePlace
+
+District "1" --> "0..*" WeatherObservation
+District "1" --> "0..*" WarningNotice
+District "1" --> "0..*" TravelPlace
+District "1" --> "0..*" RiskSegment
+User "1" --> "0..*" UserFavoritePlace
+
+TravelPlanningService ..> WeatherObservation
+TravelPlanningService ..> TravelPlace
+TravelPlanningService ..> RiskSegment
+@enduml

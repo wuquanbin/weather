@@ -1,0 +1,528 @@
+@import './base.css';
+
+:root {
+  color-scheme: light;
+  --page-bg: #eef4fb;
+  --surface: #ffffff;
+  --surface-strong: #102944;
+  --text-primary: #15263a;
+  --text-secondary: #5f7187;
+  --border: #d6e0ea;
+  --accent: #1d79d7;
+  --accent-soft: #dcecff;
+  --warning: #fff4d6;
+  --warning-text: #8a5a00;
+  --success: #dff7eb;
+  --success-text: #0e7b4b;
+  --shadow: 0 18px 40px rgba(24, 52, 84, 0.08);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at top left, #f6fbff 0, #eef4fb 44%, #e9f0f8 100%);
+  color: var(--text-primary);
+  font-family:
+    'Segoe UI',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+}
+
+button,
+select,
+input,
+textarea {
+  font: inherit;
+}
+
+#app {
+  min-height: 100dvh;
+}
+
+.dashboard-page {
+  width: min(1380px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 40px;
+}
+
+.hero-panel,
+.panel,
+.feedback-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(214, 224, 234, 0.9);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.eyebrow,
+.panel-label {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero-copy h1,
+.section-title-row h2,
+.panel-head h2 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.hero-copy h1 {
+  max-width: 12ch;
+  font-size: clamp(2rem, 3vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.hero-description,
+.service-note,
+.feedback-panel p,
+.forecast-item p,
+.suggestion-item p,
+.warning-item p,
+.module-item p,
+.knowledge-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.hero-description {
+  max-width: 58ch;
+  margin-top: 16px;
+}
+
+.hero-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(180deg, #f8fbff 0, #edf6ff 100%);
+  border-radius: var(--radius-md);
+}
+
+.field-label {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.district-select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text-primary);
+  background: var(--surface);
+}
+
+.service-area {
+  margin: 16px 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.feedback-panel {
+  padding: 28px;
+}
+
+.error-panel {
+  border-color: #f1d1d6;
+  background: #fff8f9;
+}
+
+.current-weather-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.panel {
+  padding: 22px;
+}
+
+.panel-head,
+.section-title-row,
+.suggestion-header,
+.warning-head,
+.module-head,
+.knowledge-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.weather-chip,
+.suggestion-header span,
+.warning-level,
+.module-head span,
+.rag-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.weather-chip {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.temperature-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.temperature-row strong {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.95;
+}
+
+.temperature-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+.travel-index {
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stat-card strong {
+  font-size: 28px;
+}
+
+.stat-card span {
+  color: var(--text-secondary);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.planner-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.planner-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.planner-form span {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.planner-form input,
+.planner-form select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text-primary);
+  background: var(--surface);
+}
+
+.planner-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.inline-error {
+  color: #c43c52;
+}
+
+.travel-report-card,
+.place-item,
+.risk-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fbfdff;
+  padding: 16px;
+}
+
+.travel-report-card {
+  margin-top: 18px;
+}
+
+.travel-report-head,
+.travel-route-meta,
+.place-head,
+.risk-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.travel-report-head p,
+.travel-route-meta,
+.place-category,
+.place-reason,
+.risk-advice {
+  color: var(--text-secondary);
+}
+
+.travel-route-meta {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.travel-main-instruction,
+.travel-advice {
+  margin-top: 12px;
+}
+
+.risk-pill,
+.place-score,
+.risk-head span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.risk-low {
+  background: #e7f5ee;
+  color: #0c7b4a;
+}
+
+.risk-medium {
+  background: #fff4d6;
+  color: #8a5a00;
+}
+
+.risk-high {
+  background: #fde8ec;
+  color: #b23349;
+}
+
+.place-list,
+.risk-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.place-score {
+  background: #eef7e9;
+  color: #2f7a26;
+}
+
+.risk-head span {
+  background: #edf3f9;
+  color: #4d6177;
+}
+
+.compact-knowledge {
+  grid-template-columns: 1fr;
+}
+
+.forecast-list,
+.suggestion-list,
+.warning-list,
+.module-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.forecast-item,
+.suggestion-item,
+.warning-item,
+.module-item,
+.knowledge-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background: #fbfdff;
+}
+
+.forecast-day,
+.forecast-weather,
+.forecast-extra,
+.warning-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.forecast-weather,
+.forecast-extra,
+.warning-foot,
+.knowledge-category,
+.scenario-name {
+  color: var(--text-secondary);
+}
+
+.forecast-item p,
+.suggestion-item p,
+.warning-item p,
+.module-item p {
+  margin-top: 10px;
+}
+
+.suggestion-header span {
+  background: #eef7e9;
+  color: #2f7a26;
+}
+
+.recommendation {
+  color: var(--text-primary);
+}
+
+.warning-level {
+  background: var(--warning);
+  color: var(--warning-text);
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7eef5;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3b8df0 0, #50b0ff 100%);
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.tag-list span {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #edf3f9;
+  color: #4d6177;
+  font-size: 12px;
+}
+
+.rag-ready {
+  background: var(--success);
+  color: var(--success-text);
+}
+
+.rag-pending {
+  background: #f1f3f5;
+  color: #5d6671;
+}
+
+@media (max-width: 1100px) {
+  .hero-panel,
+  .current-weather-grid,
+  .content-grid,
+  .knowledge-grid,
+  .planner-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-page {
+    width: min(100% - 24px, 1380px);
+    padding: 16px 0 28px;
+  }
+
+  .hero-panel,
+  .panel,
+  .feedback-panel {
+    padding: 18px;
+  }
+
+  .hero-copy h1 {
+    max-width: none;
+    font-size: 2rem;
+  }
+
+  .temperature-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .forecast-day,
+  .forecast-weather,
+  .forecast-extra,
+  .warning-foot {
+    flex-direction: column;
+  }
+}

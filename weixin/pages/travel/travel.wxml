@@ -1,0 +1,60 @@
+<view class="container">
+  <!-- 搜索区域 -->
+  <view class="card">
+    <view class="card-title">路线规划</view>
+    <view class="search-form">
+      <view class="form-item">
+        <text class="form-label">起点</text>
+        <input class="form-input" placeholder="请输入起点" value="{{origin}}" bindinput="onOriginInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">终点</text>
+        <input class="form-input" placeholder="请输入终点" value="{{destination}}" bindinput="onDestinationInput" />
+      </view>
+      <view class="form-item">
+        <text class="form-label">方式</text>
+        <picker mode="selector" range="{{modes}}" range-key="name" bindchange="onModeChange">
+          <view class="form-input picker-value">{{modes[0].name}}</view>
+        </picker>
+      </view>
+      <button class="search-btn" bindtap="searchRoute" loading="{{loading}}">查询路线</button>
+    </view>
+  </view>
+
+  <!-- 路线结果 -->
+  <view wx:if="{{routeResult}}" class="card">
+    <view class="card-title">路线详情</view>
+    <view class="route-info">
+      <view class="route-distance">
+        <text class="text-lg text-primary">{{routeResult.paths[0].distance || '--'}}</text>
+        <text class="text-sm text-gray">米</text>
+      </view>
+      <view class="route-duration">
+        <text class="text-lg">{{routeResult.paths[0].duration || '--'}}</text>
+        <text class="text-sm text-gray">秒</text>
+      </view>
+    </view>
+    <view wx:if="{{routeResult.paths[0].steps}}" class="route-steps">
+      <view wx:for="{{routeResult.paths[0].steps}}" wx:key="instruction" class="step-item">
+        <text class="text-sm">{{item.instruction}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 出行报告 -->
+  <view wx:if="{{travelReport}}" class="card">
+    <view class="card-title">出行报告</view>
+    <view class="report-item">
+      <text class="report-label">天气状况</text>
+      <text>{{travelReport.weatherSummary}}</text>
+    </view>
+    <view class="report-item">
+      <text class="report-label">出行建议</text>
+      <text>{{travelReport.travelAdvice}}</text>
+    </view>
+    <view wx:if="{{travelReport.riskLevel}}" class="report-item">
+      <text class="report-label">风险等级</text>
+      <text>{{travelReport.riskLevel}}</text>
+    </view>
+  </view>
+</view>

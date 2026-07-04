@@ -1,0 +1,37 @@
+@startuml
+left to right direction
+skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam roundcorner 0
+skinparam linetype polyline
+actor "管理员" as Admin
+boundary ":AdminPage" as Page
+control ":AdminAuthController" as Auth
+control ":AdminCrudController" as Crud
+rectangle ":JwtUtil" <<utility>> as Jwt
+entity ":WarningNoticeRepository" as WarningRepo
+entity ":TravelPlaceRepository" as PlaceRepo
+entity ":OperationLogRepository" as LogRepo
+
+Admin -- Page
+Page -- Auth
+Auth -- Jwt
+Page -- Crud
+Crud -- WarningRepo
+Crud -- PlaceRepo
+Crud -- LogRepo
+
+Admin -> Page : 1: login(username, password)
+Page -> Auth : 1.1: authenticate(username, password)
+Auth -> Jwt : 1.2: generateToken(adminClaims)
+Admin -> Page : 2: submitContentOperation(operationType, payload)
+Page -> Crud : 2.1: handleContentOperation(operationType, payload)
+Crud -> WarningRepo : 2.1.1: saveWarningNotice(warningData)
+WarningRepo --> Crud : 2.1.2: warningNoticeResult
+Crud -> PlaceRepo : 2.1.3: saveOrUpdateTravelPlace(placeData)
+PlaceRepo --> Crud : 2.1.4: travelPlaceResult
+Crud -> LogRepo : 2.1.5: saveOperationLog(logData)
+LogRepo --> Crud : 2.1.6: operationLogResult
+Crud --> Page : 3: latestContentList, operationStatus
+Page --> Admin : 4: refreshedContentView
+@enduml

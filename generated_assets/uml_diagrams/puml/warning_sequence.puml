@@ -1,0 +1,38 @@
+@startuml
+title 气象预警发布顺序图
+actor "预警来源" as Source
+boundary ":AdminPage" as Page
+control ":WarningNoticeService" as Service
+entity ":WarningNoticeRepository" as Repo
+control ":SubscriptionFilterService" as Filter
+participant ":WechatSubscriptionApi" <<utility>> as Wechat
+boundary ":MiniProgramPage" as Mini
+boundary ":WarningCenterPage" as WarningPage
+
+Source -> Page : submitWarningInfo(warningData)
+activate Page
+Page -> Service : createWarningNotice(warningData)
+activate Service
+Service -> Service : validatedWarning := validateWarning(warningData)
+Service -> Repo : savedWarning := saveActiveWarning(validatedWarning)
+activate Repo
+Repo --> Service : savedWarning
+deactivate Repo
+Service -> Filter : subscribedUsers := filterSubscribedUsers(impactArea, severity)
+activate Filter
+Filter --> Service : subscribedUsers
+deactivate Filter
+Service -> Wechat : pushResult := sendWarningMessage(subscribedUsers, savedWarning)
+activate Wechat
+Wechat -> Mini : deliverWarningNotice(savedWarning)
+activate Mini
+Mini --> Wechat : deliveryStatus
+deactivate Mini
+Service -> WarningPage : syncActiveWarnings(savedWarning)
+activate WarningPage
+WarningPage --> Service : activeWarningView
+deactivate WarningPage
+Service --> Page : publishResult
+deactivate Service
+deactivate Page
+@enduml

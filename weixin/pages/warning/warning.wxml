@@ -1,0 +1,59 @@
+<view class="page">
+  <!-- 筛选栏 -->
+  <view class="card filter-bar">
+    <text class="filter-label">预警级别</text>
+    <picker range="{{severities}}" bindchange="onSeverityChange">
+      <view class="filter-picker">{{filterSeverity}} ▼</view>
+    </picker>
+  </view>
+
+  <!-- 预警列表 -->
+  <view class="warning-list" wx:if="{{filteredWarnings.length > 0}}">
+    <view class="card warning-card" wx:for="{{filteredWarnings}}" wx:key="title">
+      <view class="warning-header">
+        <view class="severity-badge severity-{{item.severity === '红色' ? 'red' : item.severity === '橙色' ? 'orange' : item.severity === '黄色' ? 'yellow' : 'blue'}}">
+          {{item.severity}}预警
+        </view>
+        <text class="warning-type">{{item.warningType}}</text>
+      </view>
+
+      <view class="warning-title">{{item.title}}</view>
+
+      <view class="warning-content" wx:if="{{item.content}}">
+        {{item.content}}
+      </view>
+
+      <view class="warning-details">
+        <view class="detail-row">
+          <text class="detail-icon">📍</text>
+          <text class="detail-text">影响区域：{{item.impactArea || '佛山全市'}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{item.issuedAt}}">
+          <text class="detail-icon">🕐</text>
+          <text class="detail-text">发布时间：{{item.issuedAt}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{item.expiresAt}}">
+          <text class="detail-icon">⏰</text>
+          <text class="detail-text">预计结束：{{item.expiresAt}}</text>
+        </view>
+      </view>
+
+      <view class="defense-guide" wx:if="{{item.defenseGuidance}}">
+        <view class="guide-title">🛡 防御指引</view>
+        <text class="guide-text">{{item.defenseGuidance}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="card empty-state" wx:if="{{!loading && filteredWarnings.length === 0}}">
+    <text class="empty-icon">✅</text>
+    <text class="empty-text">当前没有活跃预警</text>
+    <text class="empty-hint">佛山天气平稳，放心出行</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-box" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

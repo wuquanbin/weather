@@ -1,0 +1,25 @@
+@startuml
+skinparam sequenceMessageAlign center
+actor "用户" as User
+participant "微信小程序" as MiniApp
+participant "TravelApiController" as Api
+participant "TravelPlanningService" as Planner
+participant "FoshanWeatherService" as Weather
+participant "AmapGeoRouteService" as AmapSvc
+participant "高德开放平台" as Amap
+
+User -> MiniApp : 输入出发地/目的地/时间
+MiniApp -> Api : GET /api/travel/report
+Api -> Planner : buildTravelReport(...)
+Planner -> Weather : getTravelReport(...)
+Weather --> Planner : 天气摘要/风险等级
+Planner -> AmapSvc : geocode(起点/终点)
+AmapSvc -> Amap : 地址解析
+Amap --> AmapSvc : 返回坐标
+Planner -> AmapSvc : route(origin,destination,mode)
+AmapSvc -> Amap : 路线规划
+Amap --> AmapSvc : 返回距离/时长/主指令
+Planner --> Api : TravelReport
+Api --> MiniApp : 天气摘要/路线/风险/建议
+MiniApp --> User : 展示出行报告
+@enduml

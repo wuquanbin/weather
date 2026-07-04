@@ -1,0 +1,107 @@
+<view class="page">
+  <!-- 未登录状态 -->
+  <view class="card login-card" wx:if="{{!isLoggedIn}}">
+    <view class="login-avatar">
+      <text class="avatar-placeholder">👤</text>
+    </view>
+    <text class="login-hint">登录后享受更多服务</text>
+    <button class="btn-primary login-btn" bindtap="onWechatLogin">微信一键登录</button>
+  </view>
+
+  <!-- 已登录状态 -->
+  <view class="card user-card" wx:if="{{isLoggedIn && userInfo}}">
+    <view class="user-info">
+      <image class="user-avatar" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <view class="avatar-placeholder-lg" wx:else>👤</view>
+      <view class="user-detail">
+        <text class="user-name">{{userInfo.nickname || '微信用户'}}</text>
+        <text class="user-id">ID: {{userInfo.id}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收藏地点 -->
+  <view class="card" wx:if="{{isLoggedIn}}">
+    <view class="section-title">📍 我的收藏</view>
+    <view wx:if="{{favorites.length > 0}}">
+      <view class="fav-item" wx:for="{{favorites}}" wx:key="id">
+        <view class="fav-info">
+          <text class="fav-name">{{item.name || item.placeName}}</text>
+          <text class="fav-tag" wx:if="{{item.tag}}">{{item.tag}}</text>
+          <text class="fav-addr">{{item.address}}</text>
+        </view>
+        <view class="fav-delete" data-id="{{item.id}}" bindtap="onDeleteFavorite">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-hint" wx:else>暂无收藏地点</view>
+  </view>
+
+  <!-- 意见反馈 -->
+  <view class="card" wx:if="{{isLoggedIn}}">
+    <view class="section-title" bindtap="toggleFeedback">
+      💬 意见反馈
+      <text class="toggle-arrow">{{showFeedback ? '▲' : '▼'}}</text>
+    </view>
+    <view wx:if="{{showFeedback}}" class="feedback-form">
+      <textarea class="feedback-input" placeholder="请描述您遇到的问题或建议..." value="{{feedbackContent}}" bindinput="onFeedbackInput" maxlength="500" />
+      <view class="feedback-counter">{{feedbackContent.length}}/500</view>
+      <button class="btn-primary" bindtap="submitFeedback" loading="{{feedbackSubmitting}}">提交反馈</button>
+    </view>
+  </view>
+
+  <!-- 系统设置 -->
+  <view class="card">
+    <view class="section-title">⚙️ 系统设置</view>
+    <view class="setting-item">
+      <text class="setting-label">预警推送通知</text>
+      <switch checked="{{notifyWarning}}" bindchange="onNotifyWarningChange" color="#007AFF" />
+    </view>
+    <view class="setting-item" wx:if="{{isLoggedIn}}">
+      <text class="setting-label">通勤天气提醒</text>
+      <switch checked="{{notifyCommute}}" bindchange="onNotifyCommuteChange" color="#007AFF" />
+    </view>
+    <view class="setting-item" wx:if="{{isLoggedIn}}">
+      <text class="setting-label">最低预警级别</text>
+      <picker range="{{levels}}" value="{{levelIndex}}" bindchange="onLevelChange">
+        <text class="setting-value">{{notifyLevel}} ▼</text>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 关于系统 -->
+  <view class="card">
+    <view class="section-title">ℹ️ 关于系统</view>
+    <view class="about-item">
+      <text class="about-label">系统名称</text>
+      <text class="about-value">佛山本地智能气象出行服务</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">版本号</text>
+      <text class="about-value">v1.0.0</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">覆盖区域</text>
+      <text class="about-value">佛山五区（禅城、南海、顺德、高明、三水）</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">数据来源</text>
+      <text class="about-value">佛山市气象局官方数据</text>
+    </view>
+    <view class="about-item">
+      <text class="about-label">免责声明</text>
+      <text class="about-desc">本系统提供的气象信息与出行建议仅供参考，实际天气情况以官方气象部门发布为准。出行决策请结合实际情况自行判断。</text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="card" wx:if="{{isLoggedIn}}">
+    <button class="btn-logout" bindtap="onLogout">退出登录</button>
+  </view>
+
+  <!-- 缓存清理 -->
+  <view class="card">
+    <button class="btn-clear" bindtap="clearCache">清除本地缓存</button>
+  </view>
+</view>

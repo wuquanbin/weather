@@ -1,0 +1,97 @@
+/* 出行页 - iOS 设置页风格 */
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  width: 80rpx;
+  font-weight: 600;
+  color: #1C1C1E;
+  font-size: 28rpx;
+}
+
+.form-input {
+  flex: 1;
+  height: 80rpx;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 16rpx;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  color: #1C1C1E;
+  border: 0.5rpx solid rgba(60, 60, 67, 0.08);
+}
+
+.picker-value {
+  line-height: 80rpx;
+  color: #1C1C1E;
+}
+
+.search-btn {
+  margin-top: 16rpx;
+  background: #007AFF;
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+/* 路线信息 - iOS 分组风格 */
+.route-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 24rpx 0;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.route-distance,
+.route-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 出行报告 */
+.report-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 0.5rpx solid rgba(60, 60, 67, 0.1);
+}
+
+.report-item:last-child {
+  border-bottom: none;
+}
+
+.report-label {
+  color: #8E8E93;
+  font-size: 28rpx;
+}
+
+/* 风险等级 - iOS 语义色 */
+.risk-low {
+  color: #34C759;
+  font-weight: 600;
+}
+
+.risk-medium {
+  color: #FF9500;
+  font-weight: 600;
+}
+
+.risk-high {
+  color: #FF3B30;
+  font-weight: 600;
+}

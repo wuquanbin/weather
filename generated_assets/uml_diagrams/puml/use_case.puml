@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+actor "普通用户" as User
+actor "系统管理员" as Admin
+actor "气象数据平台" as WeatherProvider
+actor "高德地图服务" as Amap
+actor "微信订阅消息" as Wechat
+
+rectangle "佛山本地智能气象出行服务系统" {
+  usecase "查看实时天气" as UC1
+  usecase "生成出行报告" as UC2
+  usecase "查看预警与风险路段" as UC3
+  usecase "管理常用地点与反馈" as UC4
+  usecase "维护天气与区域数据" as UC5
+  usecase "发布气象预警" as UC6
+  usecase "维护出行地点/风险路段" as UC7
+  usecase "处理反馈与系统参数" as UC8
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+Admin --> UC5
+Admin --> UC6
+Admin --> UC7
+Admin --> UC8
+
+UC1 ..> WeatherProvider : <<include>>
+UC2 ..> WeatherProvider : <<include>>
+UC2 ..> Amap : <<include>>
+UC3 ..> WeatherProvider : <<include>>
+UC6 ..> Wechat : <<include>>
+@enduml

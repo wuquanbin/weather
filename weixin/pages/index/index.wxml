@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 天气概览 -->
+  <view class="card weather-card {{weatherBgClass}}">
+    <view class="district-picker" wx:if="{{districtNames.length > 0}}">
+      <picker range="{{districtNames}}" value="{{districtIndex}}" bindchange="onDistrictChange">
+        <view class="district-selector">{{districtNames[districtIndex]}} ▾</view>
+      </picker>
+    </view>
+    <view class="weather-main">
+      <view class="weather-top">
+        <text class="weather-type">{{currentWeather.weatherType || '加载中'}}</text>
+        <text class="weather-range">{{currentWeather.lowTemperature || '--'}} ~ {{currentWeather.highTemperature || '--'}}°C</text>
+      </view>
+      <view class="weather-temp-row">
+        <text class="weather-temp">{{currentWeather.temperature || '--'}}</text>
+        <view class="weather-temp-right">
+          <text class="weather-temp-unit">°C</text>
+          <view class="weather-feels-group">
+            <text class="weather-feels-label">体感 {{currentWeather.apparentTemperature || '--'}}°C</text>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{warnings.length > 0}}" class="weather-warnings">
+        <view wx:for="{{warnings}}" wx:key="title" class="weather-warning-tag">
+          <text class="warning-icon">⛈️</text>
+          <text class="warning-text">{{item.title}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未来天气 -->
+  <view class="card forecast-card {{weatherBgClass}}">
+    <view class="card-title">未来天气</view>
+    <view class="forecast-list">
+      <view wx:for="{{displayForecast}}" wx:key="forecastDate" class="forecast-item {{item.isYesterday ? 'forecast-past' : ''}}">
+        <view class="forecast-date">{{item.forecastDate}}</view>
+        <view class="forecast-day">{{item.weekLabel}}</view>
+        <view class="forecast-middle">
+          <text class="forecast-icon">{{item.icon}}</text>
+          <text wx:if="{{item.precipitationProbability}}" class="forecast-rain">{{item.precipitationProbability}}%</text>
+        </view>
+        <view class="forecast-temp">
+          <text class="temp-high">{{item.highTemperature}}°</text>
+          <text class="temp-low">{{item.lowTemperature}}°</text>
+        </view>
+      </view>
+    </view>
+    <view class="forecast-more-btn" bindtap="goToWeatherDetail">{{showAllForecast ? '收起' : '查看更多'}}</view>
+  </view>
+
+  <!-- 出行建议 -->
+  <view class="card">
+    <view class="card-title">出行建议</view>
+    <view wx:for="{{travelSuggestions}}" wx:key="title" class="suggest-item">
+      <view class="suggest-icon">{{item.iconKey == 'cycling' ? '🚲' : item.iconKey == 'family' ? '👨‍👩‍👧' : item.iconKey == 'outing' ? '🏞️' : '🚌'}}</view>
+      <view class="flex-1">
+        <view class="suggest-title">{{item.title}}</view>
+        <view class="text-sm text-gray">{{item.summary}}</view>
+      </view>
+    </view>
+  </view>
+</view>

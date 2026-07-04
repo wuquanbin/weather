@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+*.class
+target/
+.mvn/
+.mvn-repo/
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
